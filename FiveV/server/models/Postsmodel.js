@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
 
@@ -28,5 +28,5 @@ const Postschema = new mongoose.Schema({
     },
 }, {timestamps: true })
 
-module.exports = mongoose.model('Vechile', VechileSchema)
-module.exports = mongoose.model('Post', Postschema)
+export const Vechile = mongoose.model('Vechile', VechileSchema)
+export const Post = mongoose.model('Post', Postschema)
