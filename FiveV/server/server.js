@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import db from "./db/connection.js";
 //Going to use this to import routes
 
 const PORT = process.env.PORT || 5050;

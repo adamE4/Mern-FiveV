@@ -24,6 +24,5 @@ try {
 
 let db = client.db("MERN-FiveV")
 
-console.log("MongoDB URI:", uri);
 
 export default db;
