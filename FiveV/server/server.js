@@ -9,6 +9,9 @@ app.use(cors());
 app.use(express.json());
 //used to sue the imported things
 
+//routes
+
+
 //Used to start the express server
 app.listen(PORT, () => {
     console.log('Server listening on port ${PORT}');
