@@ -13,7 +13,7 @@ app.use(express.json());
 //used to sue the imported things
 
 //routes
-app.use("/posts", postsRoutes)
+app.use('/posts', postsRoutes)
 
 //Used to start the express server
 app.listen(PORT, () => {
