@@ -1,9 +1,10 @@
 import {useState, useEffect } from "react";
 import axios from "axios";
-
+import PostDetails from "../components/PostDetails"
+import PostForm from "../components/CreatePost";
 function Home(){
 
-    const[posts, setPosts] = useState(null)
+    const[posts, setPosts] = useState([]);
 
 
     useEffect(()=> {
@@ -25,14 +26,15 @@ function Home(){
     return (
         <div className="App">
           <div className="posts">
-            {posts.length > 0 ? (
-              posts.map((post) => (
-                <p key={post._id}>{post.title}</p>
-              ))
-            ) : (
-              <p>No posts available</p>
-            )}
+            {Array.isArray(posts) && posts.map(post =>(
+                    posts.map((post) => (
+                      <PostDetails key={post._id} post={post}/>
+                    ))
+                  ) (
+                    <p>No posts available</p>
+            ))}
           </div>
+          <PostForm />
         </div>
     );
 }
