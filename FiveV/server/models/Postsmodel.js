@@ -28,5 +28,4 @@ const Postschema = new mongoose.Schema({
     },
 }, {timestamps: true })
 
-export const Vechile = mongoose.model('Vechile', VechileSchema)
 export const Post = mongoose.model('Post', Postschema)

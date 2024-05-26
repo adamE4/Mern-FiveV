@@ -6,6 +6,9 @@ import postsRoutes from "./routes/Postsroutes.js"
 
 
 const PORT = process.env.PORT || 5050;
+const MONGODB_URI = process.env.MONGODB_URI;
+
+
 const app = express();
 
 app.use(cors());

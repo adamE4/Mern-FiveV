@@ -11,26 +11,31 @@ const PostForm = () =>{
     const handleSubmit = async(e) =>{
         e.preventDefault()
 
-        const post = {title, entry}
+        const post = {title, entry:
+        {
+            make,
+            model,
+            year: parseInt(year, 10)
+        }}
 
-        const response = await axios.get('/posts', {
-            method: 'POST',
-            body: JSON.stringify(post),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        const json = await response.json()
+       
 
-        if(!response.ok) {
-            setError(json.error)
-        }
-        if(response.ok) {
+        try{
+            const response = await axios.get('/posts')
+
             setTitle('')
             setEntry('')
+            setMake('')
+            setModel('')
+            setYear('')
             setError(null)
-            console.log('new Post', json)
+            console.log('New Post', response.data)
         }
+        catch(error){
+            console.error('Error Axios fault', error)
+            setError(error.response?.data?.error || 'Failed to create post')
+        }
+        
     }
 
 
