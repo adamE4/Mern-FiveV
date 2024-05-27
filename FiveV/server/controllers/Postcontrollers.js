@@ -17,8 +17,8 @@ export const createPost = async(req, res) =>{
 
     try{
         const post = await Post.create({title, entry})
-        await post.save()
-        res.status(201).json(post)
+        const savedPost = await post.save()
+        res.status(200).json({ post: post._id})
     }catch(error){
         res.status(400).json({error: error.message})
     }

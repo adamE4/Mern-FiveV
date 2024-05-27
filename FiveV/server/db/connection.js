@@ -9,16 +9,20 @@ const client = new MongoClient(uri, {
     },
 });
 
-try {
-    await client.connect();
-
-    await client.db("admin").command({ ping: 1});
-    console.log(
-        "Pinged your deployment. You successfully connect to Mongodb!"
-    );
-} catch(err){
-    console.error("Eror connecting to MongoDb", err);
+const connectDb = async () => {
+    try {
+        await client.connect();
+    
+        await client.db("admin").command({ ping: 1});
+        console.log(
+            "Pinged your deployment. You successfully connect to Mongodb!"
+        );
+    } catch(err){
+        console.error("Eror connecting to MongoDb", err);
+    }
 }
+
+connectDb()
 
 //Going to do let db = client.db("Somehting for the databas most likley users or something like that")
 
