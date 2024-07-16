@@ -1,42 +1,25 @@
-import {useState, useEffect } from "react";
-import axios from "axios";
-import PostDetails from "../components/PostDetails"
-import PostForm from "../components/CreatePost";
-function Home(){
+import React from 'react';
+import { useNavigate } from 'react-router-dom'
 
-    const[posts, setPosts] = useState([]);
+const Home = () => {
+    const navigate = useNavigate() // navigate can route the application to a specific URL
 
+    const handleViewPostsClick = () => {
+        navigate('/view')
+    }
 
-    useEffect(()=> {
-        const fetchPosts  = async () =>{
-            try{
-                const response = await axios.get('/posts')
-                setPosts(response.data)
-            }catch(error){
-                console.error('Error fetching posts', error)
-            }
-          
-
-        }
-
-
-        fetchPosts()
-    }, [])
+    const handleCreatePostsClick = () => {
+        navigate('/posts')
+    }
+    
 
     return (
-        <div className="App">
-          <div className="posts">
-            {Array.isArray(posts) && posts.map(post =>(
-                    posts.map((post) => (
-                      <PostDetails key={post._id} post={post}/>
-                    ))
-                  ) (
-                    <p>No posts available</p>
-            ))}
-          </div>
-          <PostForm />
+        <div className="home">
+            <h4>Home</h4>
+            <button onClick={(handleCreatePostsClick)}>Create Post</button>
+            <button onClick={handleViewPostsClick}>View Posts</button>
         </div>
     );
 }
 
-export default Home
+export default Home;

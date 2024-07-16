@@ -1,79 +1,95 @@
-import {useState } from "react";
-import axios from "axios"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const PostForm = () =>{
     const [title, setTitle] = useState('')
-    const [entry, setEntry] = useState('')
-    const [error, setError] = useState(null)
     const [make, setMake] = useState('')
     const [model, setModel] = useState('')
-    const [year, setYear] = useState('')
+    const [year, setYear] = useState(0)
+    const [error, setError] = useState(null)
+    const navigate = useNavigate()
 
     const handleSubmit = async(e) =>{
         e.preventDefault()
 
-        const post = {title, entry:
-        {
-            make,
-            model,
-            year: parseInt(year, 10)
-        }}
+        const post = {title, make, model, year}
 
+    
+            console.log('Attempting to add new Post:', JSON.stringify(post))
+            const response = await fetch('http://localhost:5050/posts', {
+            method: 'POST',
+            body: JSON.stringify(post),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+
+        const Json = await response.json()
+
+
+        if(!response.ok){
+            setError(Json.error)        
+        }
        
-
-        try{
-            const response = await axios.get('/posts')
+        else{
 
             setTitle('')
-            setEntry('')
             setMake('')
             setModel('')
             setYear('')
             setError(null)
-            console.log('New Post', response.data)
+            console.log('New Post', Json)
         }
-        catch(error){
-            console.error('Error Axios fault', error)
-            setError(error.response?.data?.error || 'Failed to create post')
-        }
-        
+      
     }
 
+    const handleHomeClick = () => {
+        navigate('/')
+    }
 
     return(
         <form className="create" onSubmit={handleSubmit}>
             <h3>Create new Post</h3>
+
+
             <label>Post Title</label>
             <input
             type="text"
-            onChange={(e) => setTitle(e.target.value)}
             value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
             />
 
 
             <label>Make</label>
             <input
             type="text"
-            onChange={(e) => setMake(e.target.value)}
             value={make}
+            onChange={(e) => setMake(e.target.value)}
+            required
             />
 
 
             <label>Model</label>
             <input
             type="text"
-            onChange={(e) => setModel(e.target.value)}
             value={model}
+            onChange={(e) => setModel(e.target.value)}
+            required
             />
 
             <label>Year</label>
             <input
             type="number"
-            onChange={(e) => setYear(e.target.value)}
             value={year}
+            onChange={(e) => setYear(e.target.value)}
+            required
             />
-        <button>ADD</button>
+        <button>Submit</button>
+        <button className="Home" onClick={handleHomeClick}>Home</button>
         {error && <div className="error">{error}</div>}
+        
         </form>
+        
     )
 }
 

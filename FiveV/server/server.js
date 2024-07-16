@@ -1,26 +1,44 @@
 import express from "express";
 import cors from "cors";
-import db from "./db/connection.js";
 import postsRoutes from "./routes/Postsroutes.js"
 import dotenv from "dotenv"
-//Going to use this to import routes
+import mongoose from "mongoose";
 
 
-const PORT = process.env.PORT || 5050;
-const MONGODB_URI = process.env.MONGODB_URI;
+
+dotenv.config({ path: 'config.env'})
+
+const PORT = process.env.PORT;
+const MONGODB_URI = process.env.ATLAS_URI;
 
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-dotenv.config();
-//used to sue the imported things
 
+//used to sue the imported things
+app.use((req, res, next) => {
+    console.log(req.path, req.method)
+    next()
+})
 //routes
 app.use('/posts', postsRoutes)
 
+
+//Htpp
+import https from "https"
+const httpsServer = https.createServer(app)
+
 //Used to start the express server
-app.listen(PORT, () => {
-    console.log('Server listening on port ${PORT}');
-});
+mongoose.connect(MONGODB_URI)
+    .then(() => {
+        // to start the express server after connected to db
+        httpsServer.listen(PORT, () => {
+            console.log('HTTPS Server connected to database and listening on port', PORT);
+        });
+    })
+    .catch((error) => {
+        console.error('Database connection error:', error);
+    });
+    

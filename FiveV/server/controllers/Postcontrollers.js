@@ -13,12 +13,12 @@ export const getPosts = async(req, res) =>{
 
 // create a new post
 export const createPost = async(req, res) =>{
-    const {title, entry} = req.body
+    const {title, make, model, year} = req.body
 
     try{
-        const post = await Post.create({title, entry})
-        const savedPost = await post.save()
-        res.status(200).json({ post: post._id})
+        const post = await Post.create({title, make, model, year})
+
+        res.status(200).json(post)
     }catch(error){
         res.status(400).json({error: error.message})
     }
@@ -59,4 +59,3 @@ export const updatePost = async(req, res) =>{
     }
     res.status(200).json(post)
 }
-
