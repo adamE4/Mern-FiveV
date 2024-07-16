@@ -1,8 +1,11 @@
 import mongoose from 'mongoose'
 
-const Schema = mongoose.Schema
 
 const VechileSchema = new mongoose.Schema({
+    title:{
+        type: String,
+        required: true,
+    },
     make:{
         type: String,
         required: true
@@ -15,17 +18,8 @@ const VechileSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-})
+},{timestamps: true })
 
-const Postschema = new mongoose.Schema({
-    title:{
-        type: String,
-        required: true
-    },
-    entry:{
-        type: VechileSchema,
-        required: true
-    },
-}, {timestamps: true })
 
-export const Post = mongoose.model('Post', Postschema)
+
+export const Post = mongoose.model('Post', VechileSchema)
