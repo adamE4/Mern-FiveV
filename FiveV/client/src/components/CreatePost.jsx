@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 const PostForm = () =>{
     const [title, setTitle] = useState('')
     const [make, setMake] = useState('')
     const [model, setModel] = useState('')
-    const [year, setYear] = useState(0)
+    const [year, setYear] = useState('')
     const [error, setError] = useState(null)
     const navigate = useNavigate()
 

@@ -15,7 +15,7 @@ const VechileSchema = new mongoose.Schema({
         required: true
     },
     year:{
-        type: Number,
+        type: String,
         required: true
     },
 },{timestamps: true })
