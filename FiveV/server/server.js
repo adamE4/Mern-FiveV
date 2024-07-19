@@ -3,6 +3,7 @@ import cors from "cors";
 import postsRoutes from "./routes/Postsroutes.js"
 import dotenv from "dotenv"
 import mongoose from "mongoose";
+import userRoutes from "./routes/Userroutes.js"
 
 
 
@@ -24,7 +25,7 @@ app.use((req, res, next) => {
 })
 //routes
 app.use('/posts', postsRoutes)
-
+app.use('/user', userRoutes)
 
 //Htpp
 import https from "https"
