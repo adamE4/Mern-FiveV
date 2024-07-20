@@ -13,7 +13,7 @@ export const signupUser = async (req, res) =>{
     const hashed = await bcrypt.hash(password, salt)
 
     try{
-        const user = await User.create({ email, password})
+        const user = await User.create({ email, password: hashed})
 
         res.status(200).json(user)
     }catch(error){
