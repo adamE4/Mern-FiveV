@@ -1,6 +1,8 @@
-const express = require('express')
+import express from "express"
 
-import { signupUser, loginUser } from "../controllers/Usercontrollers"
+import { loginUser, signupUser } from "/Users/adamelmobdy/Documents/Mern-TheFinal/Mern-FiveV/FiveV/server/controllers/Usercontrollers.js"
+
+const router = express.Router()
 
 router.post('/login', loginUser)
 

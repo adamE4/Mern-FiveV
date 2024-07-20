@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+
 import { Post } from '../models/Postsmodel.js'
 
 // get all posts
