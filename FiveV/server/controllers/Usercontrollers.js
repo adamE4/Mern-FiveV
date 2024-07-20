@@ -1,7 +1,7 @@
 
 import bcrypt from "bcryptjs"
 import { User } from "../models/Usermodel.js"
-
+import validator from "validator"
 
 export const loginUser = async (req, res) =>{
     res.json({mssg: 'Login User'})
@@ -9,6 +9,19 @@ export const loginUser = async (req, res) =>{
 
 export const signupUser = async (req, res) =>{
     const { email, password } = req.body
+
+    if(!validator.isEmail(email)){
+        throw Error('Email is not valid')
+    }
+
+    if(!validator.isStrongPassword(password))
+    {
+        throw Error('Password is not strong enough')
+    }
+
+
+
+
     const salt = await bcrypt.genSalt(10)
     const hashed = await bcrypt.hash(password, salt)
 
