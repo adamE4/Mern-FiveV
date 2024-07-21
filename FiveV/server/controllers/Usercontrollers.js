@@ -12,7 +12,7 @@ const createToken = (_id) =>{
 export const loginUser = async (req, res) =>{
     const { email, password } = req.body;
 
-    const user = await User.find(email) //Finds email to find User
+    const user = await User.findOne({ email }) //Finds email to find User
 
     if(!user){
         res.status(401).json({ error: 'Invalid'})
