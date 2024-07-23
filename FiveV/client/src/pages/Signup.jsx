@@ -11,20 +11,12 @@ const SignUpForm = () =>{
     const handleSubmit = async(e) =>{
         e.preventDefault()
 
-        const post = {email, password}
-        console.log(email, password)
+        console.log(email, password) //Will remove later
 
         await signup(email, password)
     
         }
 
-
-       
-     
-
-
-
-      
 
         return(
             <form className="SignUp" onSubmit={handleSubmit}>

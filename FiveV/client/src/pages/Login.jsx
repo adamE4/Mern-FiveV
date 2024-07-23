@@ -1,27 +1,20 @@
 import { useState } from "react";
-
+import { useLogin } from "../hooks/useLogin";
 
 
 const LoginForm = () =>{
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [error, setError] = useState(null)
-
+    const {login, isLoading, error} = useLogin()
 
     const handleSubmit = async(e) =>{
         e.preventDefault()
 
-        const post = {email, password}
-        console.log(email, password)
+        console.log(email, password) //Need to remove later
+
+        await login(email, password)
     
         }
-
-
-
-      
-
-   
-
  
 
         return(
@@ -45,8 +38,7 @@ const LoginForm = () =>{
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 />
-    
-            <button>Submit</button>
+            <button disabled={isLoading}>Submit</button>
             {error && <div className="error">{error}</div>}
             
             </form>
