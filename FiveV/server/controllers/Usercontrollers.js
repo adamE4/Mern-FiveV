@@ -22,8 +22,10 @@ export const loginUser = async (req, res) =>{
 
     const isPasswordValid = await bcrypt.compare(password, hashed) // comparing the password passed by the client to the password from the user account we found to verify
 
+    const token = createToken(user._id)
+
     if(isPasswordValid){
-        res.status(200).json({message: 'Login Successful'})
+        res.status(200).json({ email, token })
     }
     else{
         res.status(401).json({ error: 'Invalid'})
