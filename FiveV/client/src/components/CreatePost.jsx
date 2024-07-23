@@ -17,7 +17,7 @@ const PostForm = () =>{
 
     
             console.log('Attempting to add new Post:', JSON.stringify(post))
-            const response = await fetch('http://localhost:5050/posts', {
+            const response = await fetch('https://localhost:5050/posts', {
             method: 'POST',
             body: JSON.stringify(post),
             headers: {

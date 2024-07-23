@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 
 
 const LoginForm = () =>{
@@ -28,39 +28,41 @@ const LoginForm = () =>{
             setError(null)
             console.log('New Post', Json)
         }
+
+        return(
+            <form className="Login" onSubmit={handleSubmit}>
+                <h3>Sign Up</h3>
+    
+    
+                <label>Email</label>
+                <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                />
+    
+    
+                <label>Password</label>
+                <input
+                type="text"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                />
+    
+            <button>Submit</button>
+            {error && <div className="error">{error}</div>}
+            
+            </form>
+            
+        )
       
     }
 
 
 
-    return(
-        <form className="Login" onSubmit={handleSubmit}>
-            <h3>Sign Up</h3>
-
-
-            <label>Email</label>
-            <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            />
-
-
-            <label>Password</label>
-            <input
-            type="text"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            />
-
-        <button>Submit</button>
-        {error && <div className="error">{error}</div>}
-        
-        </form>
-        
-    )
+   
 
 
 export default LoginForm
