@@ -15,9 +15,9 @@ const Preview = () => {
 
     return (
         <div className="preview">
-            <h4>Home</h4>
-            <button onClick={(handleSignUpClick)}>Create Post</button>
-            <button onClick={handleLoginClick}>View Posts</button>
+            <h4>Welcome to FiveV</h4>
+            <button onClick={(handleSignUpClick)}>Sign Up</button>
+            <button onClick={handleLoginClick}>Login</button>
         </div>
     );
 }

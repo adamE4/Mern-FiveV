@@ -17,17 +17,12 @@ const LoginForm = () =>{
         }
 
 
-        if(!response.ok){
-            setError(Json.error)        
-        }
-       
-        else{
 
-            setEmail('')
-            setPassword('')
-            setError(null)
-            console.log('New Post', Json)
-        }
+      
+
+   
+
+ 
 
         return(
             <form className="Login" onSubmit={handleSubmit}>
