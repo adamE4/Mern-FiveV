@@ -5,6 +5,8 @@ import { useLogout } from '../hooks/useLogout';
 
 const Home = () => {
     const navigate = useNavigate() // navigate can route the application to a specific URL
+    const { logout } = useLogout()
+    
 
     const handleViewPostsClick = () => {
         navigate('/view')
