@@ -5,6 +5,11 @@ import Viewpost from "./components/viewPost"
 import Posts from "./components/CreatePost"
 import Home from "./components/Homepage"
 import {Route, Routes} from "react-router-dom";
+import LoginForm from "./pages/Login";
+import SignUpForm from "./pages/Signup";
+import Preview from "./components/PreviewPage";
+
+
 const App = () =>{
     return(
         <div className="App">
@@ -13,6 +18,16 @@ const App = () =>{
 
             <Route 
                 path="/" 
+                element={<Preview />} 
+            />
+
+            <Route 
+                path="/home" 
+                element={<Home />} 
+            />
+
+            <Route 
+                path="/home" 
                 element={<Home />} 
             />
             
@@ -23,6 +38,14 @@ const App = () =>{
             <Route 
                 path="/posts" 
                 element={<Posts />} 
+            />
+             <Route 
+                path="/SignUp" 
+                element={<SignUpForm />} 
+            />
+            <Route 
+                path="/Login" 
+                element={<LoginForm />} 
             />
 
             </Routes>
