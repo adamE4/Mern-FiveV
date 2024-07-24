@@ -6,7 +6,7 @@ const PostForm = () =>{
     const [title, setTitle] = useState('')
     const [make, setMake] = useState('')
     const [model, setModel] = useState('')
-    const [year, setYear] = useState('')
+    const [year, setYear] = useState(0)
     const [error, setError] = useState(null)
     const navigate = useNavigate()
 
@@ -17,7 +17,7 @@ const PostForm = () =>{
 
     
             console.log('Attempting to add new Post:', JSON.stringify(post))
-            const response = await fetch('/posts', {
+            const response = await fetch('http://localhost:5050/posts', {
             method: 'POST',
             body: JSON.stringify(post),
             headers: {

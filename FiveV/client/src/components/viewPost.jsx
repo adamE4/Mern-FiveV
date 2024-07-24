@@ -9,7 +9,7 @@ function viewPost(){
     useEffect(()=> {
         const fetchPosts  = async () =>{
             try{
-              const response = await fetch('/posts')
+              const response = await fetch('http://localhost:5050/posts')
               const data = response.json()
               setPosts(data)
             }catch(error){
