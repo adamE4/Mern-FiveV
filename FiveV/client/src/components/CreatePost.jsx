@@ -12,11 +12,11 @@ const PostForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const post = { title, make, model, year };
+        const post = { title, make, model, year};
 
-        try {
+        
             console.log('Attempting to add new Post:', JSON.stringify(post));
-            const response = await fetch('http://localhost:5050/posts', {
+            const response = await fetch('https://localhost:5050/posts', {
                 method: 'POST',
                 body: JSON.stringify(post),
                 headers: {
@@ -36,10 +36,7 @@ const PostForm = () => {
                 setError(null);
                 console.log('New Post', json);
             }
-        } catch (error) {
-            console.error('Error:', error);
-            setError('Failed to create post');
-        }
+  
     };
 
     const handleHomeClick = () => {

@@ -28,14 +28,22 @@ app.use('/posts', postsRoutes)
 app.use('/user', userRoutes)
 
 //Htpp
-import http from "http"
-const httpServer = http.createServer(app)
+import fs from "fs"
+import path from "path"
+const privKey = fs.readFileSync(path.join('key.pem'), 'utf8')
+const certifcate = fs.readFileSync(path.join('cert.pem'), 'utf8')
+const cred = { key: privKey, cert: certifcate}
+
+
+import https from "https"
+const httpsServer = https.createServer(cred, app)
 
 //Used to start the express server
 mongoose.connect(MONGODB_URI)
+
     .then(() => {
         // to start the express server after connected to db
-        httpServer.listen(PORT, () => {
+        httpsServer.listen(PORT, () => {
             console.log('HTTPS Server connected to database and listening on port', PORT);
         });
     })
