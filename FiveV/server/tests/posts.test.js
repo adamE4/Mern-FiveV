@@ -8,7 +8,7 @@ import dotenv from 'dotenv'
 let deletePosts = []
 
 beforeAll(async () => {
-    const dbUri = process.env.TEST
+    const dbUri = process.env.ATLAS_URI
     if (!dbUri){
         throw new Error('dbUri undefined')
     }
@@ -35,7 +35,7 @@ describe("POST /posts", () =>{
                 title: "Cars",
                 make: "Chevy",
                 model: "Camaro",
-                year: "2020"
+                year: 2020,
             }
             const response = await request(app).post("/posts").send(Postdata)
             console.log(response.body)
