@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const PostForm = () => {
+    const { user } = useAuthContext()
     const [title, setTitle] = useState('');
     const [make, setMake] = useState('');
     const [model, setModel] = useState('');
@@ -12,6 +14,13 @@ const PostForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        
+
+        if(!user){
+            setError('Must be logged in')
+            return
+        }
+
         const post = { title, make, model, year};
 
         
@@ -21,6 +30,7 @@ const PostForm = () => {
                 body: JSON.stringify(post),
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ${user.token}',
                 },
             });
 

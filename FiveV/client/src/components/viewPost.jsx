@@ -1,15 +1,22 @@
 import {useState, useEffect } from "react";
 import PostDetails from "./PostDetails"
+import { useAuthContext } from "../hooks/useAuthContext";
 
 function viewPost(){
 
     const[posts, setPosts] = useState([]);
 
+    const user = useAuthContext()
+
 
     useEffect(()=> {
         const fetchPosts  = async () =>{
             try{
-              const response = await fetch('https://localhost:5050/posts')
+              const response = await fetch('https://localhost:5050/posts', {
+                headeers:{
+                  'Authorization': 'Bearer ${user.token}',
+                }
+              })
               const data = response.json()
               setPosts(data)
             }catch(error){
@@ -19,9 +26,12 @@ function viewPost(){
 
         }
 
+        if(user){
+          fetchPosts()
+        }
 
         fetchPosts()
-    }, [])
+    }, [user])
 
     return (
         <div className="App">
