@@ -35,15 +35,6 @@ export const loginUser = async (req, res) =>{
 export const signupUser = async (req, res) =>{
     const { email, password } = req.body
 
-    if(!validator.isEmail(email)){
-        throw Error('Email is not valid')
-    }
-
-    if(!validator.isStrongPassword(password))
-    {
-        throw Error('Password is not strong enough')
-    }
-
 
 
 

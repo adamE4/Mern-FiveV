@@ -24,17 +24,17 @@ const PostForm = () => {
                 },
             });
 
-            const json = await response.json();
+            const Json = await response.json();
 
             if (!response.ok) {
-                setError(json.error);
+                setError(Json.error);
             } else {
                 setTitle('');
                 setMake('');
                 setModel('');
                 setYear('');
                 setError(null);
-                console.log('New Post', json);
+                console.log('New Post', Json);
             }
   
     };
