@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
+import axios from 'axios'
 
 export const useLogin = () =>{
     const [error, setError] = useState(null)
@@ -11,12 +12,7 @@ export const useLogin = () =>{
         setIsLoading(true)
         setError(null)
 
-        const response = await fetch('https://localhost:5050/user/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'},
-            body: JSON.stringify(email, password),
-    })
+        const response = await axios.get('https://localhost:5050/user/signup', {email, password})
 
     const json = await response.json()
 

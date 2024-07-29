@@ -13,7 +13,7 @@ export const useSignup = () =>{
         setIsLoading(true)
         setError(null)
 
-        const respone = await axios.post('https://localhost:5050/user/signup')
+        const response = await axios.post('https://localhost:5050/user/signup', {email, password})
         
 
         const json = await response.json()
