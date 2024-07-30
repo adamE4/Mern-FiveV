@@ -40,7 +40,7 @@ const PostForm = () => {
             })
           
             
-            const Json = await response.json
+            const Json = await response.json()
 
 
             setTitle('');
