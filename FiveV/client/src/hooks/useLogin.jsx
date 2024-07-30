@@ -12,21 +12,19 @@ export const useLogin = () =>{
         setIsLoading(true)
         setError(null)
 
-        const response = await axios.get('https://localhost:5050/user/signup', {email, password})
+        try{
+            const response = await axios.post('https://localhost:5050/user/login', {email, password});            
+            
+            const json = response.data
 
-    const json = await response.json()
-
-        if(!response.ok){
-            setIsLoading(false)
-            setError(json.error)
-        }
-
-        if(response.ok){
             localStorage.setItem('user', JSON.stringify(json))
 
-            dispatch({type: ' ', payload: json})
+            dispatch({ type: 'LOGIN' , payload: json})
 
             setIsLoading(false)
+        }catch(error){
+            setIsLoading(false)
+            setError(error)
         }
     }
     return { login, isLoading, error }

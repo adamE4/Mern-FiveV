@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.use(requireAuth)
 
-router.post("/", createPost)
+router.post("/create", createPost)
 
 router.get("/",getPosts)
 

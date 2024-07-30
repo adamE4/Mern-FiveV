@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
+import axios from "axios";
+
 
 const PostForm = () => {
     const { user } = useAuthContext()
@@ -21,37 +23,46 @@ const PostForm = () => {
             return
         }
 
+
+
         const post = { title, make, model, year};
 
-        
-            console.log('Attempting to add new Post:', JSON.stringify(post));
-            const response = await fetch('https://localhost:5050/posts', {
+
+        try{
+
+            const response = await fetch('https://localhost:5050/posts/create', {
                 method: 'POST',
                 body: JSON.stringify(post),
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ${user.token}',
-                },
-            });
+                    'Authorization': `Bearer ${user.token}`
+                }
+            })
+          
+            
+            const Json = await response.json
 
-            const Json = await response.json();
 
-            if (!response.ok) {
-                setError(Json.error);
-            } else {
-                setTitle('');
-                setMake('');
-                setModel('');
-                setYear('');
-                setError(null);
-                console.log('New Post', Json);
-            }
+            setTitle('');
+            setMake('');
+            setModel('');
+            setYear('');
+            setError(null);
+            console.log('New Post', Json);
+
+
+
+        }catch(error){
+            setError(error.response?.data?.error || 'Post Failed')
+        }
+
+       
   
     };
 
     const handleHomeClick = () => {
         navigate('/home');
-    };
+    }
 
     return (
         <form className="create" onSubmit={handleSubmit}>

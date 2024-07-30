@@ -16,7 +16,9 @@ export const createPost = async(req, res) =>{
     const {title, make, model, year} = req.body
 
     try{
-        const post = await Post.create({title, make, model, year})
+
+        const user_id = req.user._id
+        const post = await Post.create({title, make, model, year, user_id})
 
 
         res.status(200).json(post)

@@ -4,6 +4,7 @@ import { User } from '../models/Usermodel.js'
 export const requireAuth = async (req, res, next)  =>{
 
     const { authorization } = req.headers
+    console.log('Authorization header:', authorization);
 
     if(!authorization){
         return res.status(401).json({error: 'Authorization token required'})
