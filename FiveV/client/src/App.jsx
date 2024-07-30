@@ -40,7 +40,7 @@ const App = () =>{
             />
              <Route 
                 path="/SignUp" 
-                element={!user ? <SignUpForm /> : <Navigate to="/home"/>} 
+                element={!user ? <SignUpForm /> : <Navigate to="/login"/>} 
             />
             <Route 
                 path="/Login" 

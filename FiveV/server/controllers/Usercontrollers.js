@@ -2,7 +2,7 @@
 import bcrypt from "bcryptjs"
 import { User } from "../models/Usermodel.js"
 import validator from "validator"
-import * as jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 const createToken = (_id) =>{
     return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d'}) //taking the user._id and the secret value from our .env file to create a JWT for the user

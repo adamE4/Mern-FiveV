@@ -1,6 +1,6 @@
 import express from "express"
 import { createPost, getPosts, deletePost, updatePost } from "/Users/adamelmobdy/Documents/MERN-THEFINAL/Mern-FiveV/FiveV/server/controllers/Postcontrollers.js"
-import { requireAuth } from "../middleware/requireAuth"
+import { requireAuth } from "../middleware/requireAuth.js"
 
 const router = express.Router()
 
