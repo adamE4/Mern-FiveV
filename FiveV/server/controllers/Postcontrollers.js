@@ -14,6 +14,10 @@ export const getPosts = async(req, res) =>{
 // create a new post
 export const createPost = async(req, res) =>{
     const {title, make, model, year} = req.body
+    console.log('Title: ', title)
+    console.log('Make: ', make)
+    console.log('Model: ', model)
+    console.log('Year ', year)
 
     try{
 
@@ -21,7 +25,6 @@ export const createPost = async(req, res) =>{
         console.log('USEROD in CONTROLLER', user_id)
         const post = await Post.create({title, make, model, year, user_id})
 
-        await post.save();
         res.status(200).json(post)
     }catch(error){
         res.status(400).json({error: error.message})

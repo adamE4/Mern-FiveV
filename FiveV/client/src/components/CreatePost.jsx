@@ -29,7 +29,6 @@ const PostForm = () => {
 
 
         try{
-
             const response = await fetch('https://localhost:5050/posts/create', {
                 method: 'POST',
                 body: JSON.stringify(post),
@@ -39,8 +38,8 @@ const PostForm = () => {
                 }
             })
           
-            
-            const Json = await response.json()
+           const Json = await response.json()
+      
 
 
             setTitle('');
