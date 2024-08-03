@@ -6,16 +6,16 @@ function viewPost(){
 
     const[posts, setPosts] = useState([]);
 
-    const user = useAuthContext()
+    const { user } = useAuthContext()
 
 
     useEffect(()=> {
         const fetchPosts  = async () =>{
             try{
               const response = await fetch('https://localhost:5050/posts', {
-                headeers:{
-                  'Authorization': 'Bearer ${user.token}',
-                }
+                headers: {
+                  'Authorization': ` ${user.token}`
+              }
               })
               const data = response.json()
               setPosts(data)

@@ -27,7 +27,7 @@ const App = () =>{
 
             <Route 
                 path="/home" 
-                element={user ? <Home /> : <Navigate to="/login"/>} 
+                element={user ? <Home /> : <Navigate to="/"/>} 
             />
             
             <Route 
@@ -40,7 +40,7 @@ const App = () =>{
             />
              <Route 
                 path="/SignUp" 
-                element={!user ? <SignUpForm /> : <Navigate to="/login"/>} 
+                element={!user ? <SignUpForm /> : <Navigate to="/home"/>} 
             />
             <Route 
                 path="/Login" 

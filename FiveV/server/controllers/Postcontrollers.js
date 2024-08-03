@@ -18,6 +18,7 @@ export const createPost = async(req, res) =>{
     try{
 
         const user_id = req.user._id
+        console.log('USEROD in CONTROLLER', user_id)
         const post = await Post.create({title, make, model, year, user_id})
 
         await post.save();

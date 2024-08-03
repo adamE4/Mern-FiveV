@@ -46,6 +46,8 @@ export const signupUser = async (req, res) =>{
 
         const token = createToken(user._id) //creates JWT for user
 
+        console.log('SIGNUP USer ID: ', user._id)
+
         res.status(200).json({email, token})
     }catch(error){
         res.status(400).json({error: error.message})
