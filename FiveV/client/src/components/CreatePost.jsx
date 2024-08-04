@@ -10,6 +10,7 @@ const PostForm = () => {
     const [make, setMake] = useState('');
     const [model, setModel] = useState('');
     const [year, setYear] = useState(''); 
+    const [image, setImage] = useState(''); 
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
@@ -24,8 +25,7 @@ const PostForm = () => {
         }
 
 
-
-        const post = { title, make, model, year};
+        const post = { title, make, model, year, image};
 
 
         try{
@@ -96,6 +96,14 @@ const PostForm = () => {
                 type="number"
                 value={year}
                 onChange={(e) => setYear(e.target.value)}
+                required
+            />
+
+            <label>Image</label>
+            <input
+                type="file"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
                 required
             />
 

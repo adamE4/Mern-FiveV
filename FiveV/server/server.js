@@ -4,7 +4,8 @@ import postsRoutes from "./routes/Postsroutes.js"
 import dotenv from "dotenv"
 import mongoose from "mongoose";
 import userRoutes from "./routes/Userroutes.js"
-
+import fileUpload from "express-fileupload";
+import multer from "multer";
 
 
 dotenv.config({ path: 'config.env'})
@@ -12,19 +13,34 @@ dotenv.config({ path: 'config.env'})
 const PORT = process.env.PORT;
 const MONGODB_URI = process.env.ATLAS_URI;
 
-
 const app = express();
+
+
 
 app.use(cors());
 app.use(express.json());
+app.use(fileUpload)
 
 //used to sue the imported things
 app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
 })
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/Images')
+    },
+    filename: (req, file, cb) =>{
+        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+    }
+})
+
+const upload = multer({
+    storage: storage
+})
 //routes
-app.use('/posts', postsRoutes)
+app.use('/posts', upload.single('file'), postsRoutes)
 app.use('/user', userRoutes)
 
 //Htpp
