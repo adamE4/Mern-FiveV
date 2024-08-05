@@ -31,23 +31,10 @@ app.use((req, res, next) => {
 
 
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/Images')
-    },
-    filename: (req, file, cb) =>{
-        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
-    }
-})
-
-const upload = multer({
-    storage: storage
-})
-
-
 //routes
-app.use('/posts', upload.single('file'), postsRoutes)
 app.use('/user', userRoutes)
+app.use('/posts', postsRoutes)
+
 
 
 //Htpp
