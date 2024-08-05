@@ -18,11 +18,8 @@ const Preview = () => {
             <div className='Title'>
             <h4>Welcome to FiveV</h4>
             </div>
-            <div className='Preview-Buttons'>
             <button onClick={(handleSignUpClick)}>Sign Up</button>
             <button onClick={handleLoginClick}>Login</button>
-
-            </div>
         </div>
     );
 }
