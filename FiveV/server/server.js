@@ -21,11 +21,15 @@ app.use(cors());
 app.use(express.json());
 app.use(fileUpload)
 
+
 //used to sue the imported things
 app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
 })
+
+
+
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -39,9 +43,12 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage
 })
+
+
 //routes
 app.use('/posts', upload.single('file'), postsRoutes)
 app.use('/user', userRoutes)
+
 
 //Htpp
 import fs from "fs"
