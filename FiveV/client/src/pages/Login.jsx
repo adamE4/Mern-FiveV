@@ -19,9 +19,11 @@ const LoginForm = () =>{
 
         return(
             <form className="Login" onSubmit={handleSubmit}>
-                <h3>Login</h3>
+                <div>
+                    <h3>Login</h3>
+                </div>
     
-    
+                <div className="<Login-values">
                 <label>Email</label>
                 <input
                 type="email"
@@ -38,6 +40,8 @@ const LoginForm = () =>{
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 />
+
+                </div>
             <button disabled={isLoading}>Submit</button>
             {error && <div className="error">{error}</div>}
             

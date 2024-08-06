@@ -3,10 +3,24 @@ import bcrypt from "bcryptjs"
 import { User } from "../models/Usermodel.js"
 import validator from "validator"
 import jwt from 'jsonwebtoken'
+import multer from "multer";
 
 const createToken = (_id) =>{
     return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d'}) //taking the user._id and the secret value from our .env file to create a JWT for the user
 }
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/Images')
+    },
+    filename: (req, file, cb) =>{
+        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+    }
+})
+
+export const upload = multer({
+    storage: storage
+})
 
 
 export const loginUser = async (req, res) =>{
@@ -36,6 +50,13 @@ export const signupUser = async (req, res) =>{
     const { email, password } = req.body
 
 
+    if(!email){
+        console.log('EMAIL NOT FOUND')
+    }
+
+    if(!password){
+        console.log('PASSWORD NOT FOUND')
+    }
 
 
     const salt = await bcrypt.genSalt(10) //salting the password which adds random characters to the password

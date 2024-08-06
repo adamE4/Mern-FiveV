@@ -15,7 +15,8 @@ const SignUpForm = () =>{
         console.log(email, password) //Will remove later
 
         await signup(email, password)
-    
+        
+        console.log(email, password)
         }
 
 

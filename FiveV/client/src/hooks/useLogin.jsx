@@ -13,8 +13,8 @@ export const useLogin = () =>{
         setError(null)
 
         try{
-            const response = await axios.post('https://localhost:5050/user/login', {email, password});            
-            
+            const response = await axios.post('https://localhost:5050/user/login', {email, password})
+
             const json = response.data
 
             localStorage.setItem('user', JSON.stringify(json))
