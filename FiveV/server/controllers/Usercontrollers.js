@@ -9,6 +9,7 @@ const createToken = (_id) =>{
     return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d'}) //taking the user._id and the secret value from our .env file to create a JWT for the user
 }
 
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'public/Images')
@@ -62,7 +63,9 @@ export const signupUser = async (req, res) =>{
     const salt = await bcrypt.genSalt(10) //salting the password which adds random characters to the password
     const hashed = await bcrypt.hash(password, salt) // Using the salt and the password passed by the client and then hashinng it for added secruity
 
+
     try{
+        console.log("IN THE TRY CATCH IN SIGNUP CONTROLLER")
         const user = await User.create({ email, password: hashed}) //creating user
 
         const token = createToken(user._id) //creates JWT for user
@@ -72,6 +75,7 @@ export const signupUser = async (req, res) =>{
         res.status(200).json({email, token})
     }catch(error){
         res.status(400).json({error: error.message})
+        console.log(error)
     }
 }
 

@@ -25,7 +25,7 @@ const PostForm = () => {
         }
 
 
-        const post = { title, make, model, year, image};
+        const post = { title, make, model, year, image}
 
 
         try{

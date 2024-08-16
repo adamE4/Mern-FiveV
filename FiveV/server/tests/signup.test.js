@@ -48,7 +48,7 @@ describe("POST /user/signup", () =>{
 
  
 
-            deleteUSers.push(saved._id)
+            deleteUsers.push(saved._id)
 
         })
     
@@ -57,3 +57,5 @@ describe("POST /user/signup", () =>{
 
 
 })
+
+

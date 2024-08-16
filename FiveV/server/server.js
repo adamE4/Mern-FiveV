@@ -4,15 +4,13 @@ import postsRoutes from "./routes/Postsroutes.js"
 import dotenv from "dotenv"
 import mongoose from "mongoose";
 import userRoutes from "./routes/Userroutes.js"
-import fileUpload from "express-fileupload";
 import fs from "fs"
 import path from "path"
-import { upload } from "./controllers/Usercontrollers.js";
 
 dotenv.config({ path: 'config.env'})
 
-const PORT = process.env.PORT;
 const MONGODB_URI = process.env.ATLAS_URI;
+const PORT = process.env.PORT;
 
 const app = express();
 

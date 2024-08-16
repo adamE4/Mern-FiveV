@@ -4,7 +4,7 @@ import { useSignup }  from "../hooks/useSignup";
 
 
 const SignUpForm = () =>{
-    const [email, setEmail] = useState('')
+    const [email, setEmail] = useState('') 
     const [password, setPassword] = useState('')
     const {signup, isLoading, error} = useSignup()
  
@@ -12,7 +12,7 @@ const SignUpForm = () =>{
     const handleSubmit = async(e) =>{
         e.preventDefault()
 
-        console.log(email, password) //Will remove later
+        console.log(email, password)
 
         await signup(email, password)
         
@@ -24,12 +24,12 @@ const SignUpForm = () =>{
             <form className="SignUp" onSubmit={handleSubmit}>
                 <h3>Sign Up</h3>
     
-    
+                <div>
                 <label>Email</label>
                 <input
-                type="email"
-                value={email}
+                type="text"
                 onChange={(e) => setEmail(e.target.value)}
+                value={email}
                 required
                 />
     
@@ -37,10 +37,12 @@ const SignUpForm = () =>{
                 <label>Password</label>
                 <input
                 type="text"
-                value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                value={password}
                 required
                 />
+                </div>
+              
     
             <button disabled={isLoading}>Submit</button>
             {error && <div className="error">{error}</div>}
