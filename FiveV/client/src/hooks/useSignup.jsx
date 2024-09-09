@@ -14,9 +14,16 @@ import axios from "axios";
 
       
         try{
-            const response = await axios.post('https://localhost:5050/user/signup', {email, password})
+            const response = await fetch('https://localhost:5050/user/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({email, password})
+            })
+          
+           const json = await response.json()
 
-            const json = response.data
           
             localStorage.setItem('user', JSON.stringify(json))
 

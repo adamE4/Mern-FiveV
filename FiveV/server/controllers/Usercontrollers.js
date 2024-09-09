@@ -1,6 +1,6 @@
 
 import bcrypt from "bcryptjs"
-import { User } from "../models/Usermodel.js"
+import {User} from "../models/Usermodel.js";
 import validator from "validator"
 import jwt from 'jsonwebtoken'
 import multer from "multer";
@@ -66,7 +66,9 @@ export const signupUser = async (req, res) =>{
 
     try{
         console.log("IN THE TRY CATCH IN SIGNUP CONTROLLER")
-        const user = await User.create({ email, password: hashed}) //creating user
+        const user = new User({ email, password: hashed}) //creating user
+
+        await user.save()
 
         const token = createToken(user._id) //creates JWT for user
 

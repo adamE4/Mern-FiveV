@@ -27,7 +27,7 @@ const SignUpForm = () =>{
                 <div>
                 <label>Email</label>
                 <input
-                type="text"
+                type="email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 required

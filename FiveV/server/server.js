@@ -28,16 +28,9 @@ app.use((req, res, next) => {
 })
 
 
-
-
-
 //routes
 app.use('/user', userRoutes)
 app.use('/posts', postsRoutes)
-
-
-
-
 
 
 //Htpp
@@ -48,6 +41,13 @@ const cred = { key: privKey, cert: certifcate}
 
 import https from "https"
 const httpsServer = https.createServer(cred, app)
+
+
+
+
+
+
+
 
 //Used to start the express server
 mongoose.connect(MONGODB_URI)

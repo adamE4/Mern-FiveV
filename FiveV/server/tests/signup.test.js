@@ -8,7 +8,7 @@ import dotenv from 'dotenv'
 let deleteUsers = []
 
 beforeAll(async () => {
-    const dbUri = process.env.ATLAS_URI
+    const dbUri = process.env.TEST
     if (!dbUri){
         throw new Error('dbUri undefined')
     }
@@ -42,7 +42,7 @@ describe("POST /user/signup", () =>{
 
       
 
-            const saved = await User.findById(response._id)
+            const saved = await User.findById(response.email)
             console.log('Saved:', saved)
             expect(saved.email).toBe(Userdata.email)
 

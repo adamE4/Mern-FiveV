@@ -25,7 +25,7 @@ export const createPost = async(req, res) =>{
         const image = req.file.filename
         console.log('USEROD in CONTROLLER', user_id)
         const post = await Post.create({title, make, model, year, user_id, image})
-
+    
         res.status(200).json(post)
     }catch(error){
         res.status(400).json({error: error.message})
