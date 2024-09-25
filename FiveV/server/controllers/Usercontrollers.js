@@ -5,6 +5,9 @@ import validator from "validator"
 import jwt from 'jsonwebtoken'
 import multer from "multer";
 
+
+
+
 const createToken = (_id) =>{
     return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d'}) //taking the user._id and the secret value from our .env file to create a JWT for the user
 }
@@ -66,10 +69,9 @@ export const signupUser = async (req, res) =>{
 
     try{
         console.log("IN THE TRY CATCH IN SIGNUP CONTROLLER")
-        const user = new User({ email, password: hashed}) //creating user
+        const user = new User( {email, password: hashed} ) //creating user
 
         await user.save()
-
         const token = createToken(user._id) //creates JWT for user
 
         console.log('SIGNUP USer ID: ', user._id)

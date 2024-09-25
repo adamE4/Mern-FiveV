@@ -80,3 +80,26 @@
   .Login p {
     color: red;
   }
+
+
+  .create {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px auto;
+    width: 400px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .create h2 {
+    margin-bottom: 20px;
+  }
+  
+  .create p {
+    color: red;
+  }
+
+
